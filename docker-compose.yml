@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  server:
+    build: ./server
+    image: es-app-server:1.0
+    ports:
+      - 8080:8080
+    networks:
+      - esnet
+    depends_on:
+      - es
+  es:
+    build: ./es
+    image: es-jp:7.9.2
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.graph.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+    networks:
+      - esnet
+  cerebro:
+    image: lmenezes/cerebro:0.8.5
+    ports:
+      - 9000:9000
+    networks:
+      - esnet
+    depends_on:
+      - es
+
+networks:
+  esnet:
