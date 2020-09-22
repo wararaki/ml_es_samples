@@ -7,4 +7,4 @@ es = Elasticsearch(hosts=['http://es:9200'])
 class SearchService:
     @classmethod
     def search(clf) -> dict:
-        return es.search()
+        return es.search(index='news', body={'query': {'match_all': {}}})

@@ -1,0 +1,33 @@
+{
+    "mappings": {
+        "properties": {
+            "url": {
+                "type": "text"
+            },
+            "datetime": {
+                "type": "date"
+            },
+            "title": {
+                "type": "text",
+                "analyzer": "kuromoji_analyzer"
+            },
+            "content": {
+                "type": "text",
+                "analyzer": "kuromoji_analyzer"
+            },
+            "label": {
+                "type": "keyword"
+            }
+        }
+    },
+    "settings": {
+        "analysis": {
+            "analyzer": {
+                "kuromoji_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "kuromoji_tokenizer"
+                }
+            }
+        }
+    }
+}
