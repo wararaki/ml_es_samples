@@ -2,22 +2,25 @@
 
 ## preparation
 
-### download dataset
-
-```shell script
-bash download.sh
-```
-
 ### build a server application
 
 ```shell script
 docker-compose build
 ```
 
-### run
+### launch applications
 
 ```shell script
 docker-compose up
+```
+
+insert data after running #lasticsearch
+
+```shell script
+cd crawler
+pip install -r requirements.txt
+/bin/bash run.sh
+cd ..
 ```
 
 open http://localhost:8080/docs on your browser.
