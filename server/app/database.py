@@ -9,6 +9,9 @@ ES_INDEX = os.getenv('ES_INDEX', 'news')
 
 
 class sessionmaker:
+    # Factory generator
+    # TODO: Session 作成ではないので、名前をあとで変更する。
+    # TODO: Elasticsearch のオブジェクトを返すのではなく、自作 Elasticsearch Client を返すようにしたい。
     def __init__(self, host: str, index: str):
         self._host = host
         self._index = index
