@@ -1,10 +1,14 @@
+from typing import List, Optional, Tuple
 from elasticsearch import Elasticsearch
 
-
-es = Elasticsearch(hosts=['http://es:9200'])
+from ..models.news import News
+from .query import QueryBuilder
+from .response import ResponseFormatter
 
 
 class SearchService:
     @classmethod
-    def search(clf) -> dict:
-        return es.search(index='news', body={'query': {'match_all': {}}})
+    def search(clf, query: Optional[str], es: Elasticsearch, index: str) -> Tuple[int, List[News]]:
+        es_query = QueryBuilder.build(query)
+        response = es.search(index=index, body=es_query)
+        return ResponseFormatter.format(response)
