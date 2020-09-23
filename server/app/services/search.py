@@ -1,4 +1,5 @@
 from typing import List, Optional, Tuple
+
 from elasticsearch import Elasticsearch
 
 from ..models.news import News
