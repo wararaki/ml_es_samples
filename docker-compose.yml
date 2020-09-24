@@ -1,5 +1,12 @@
 version: "3.7"
 services:
+  ui:
+    build: ./ui
+    image: es-app-ui:1.0
+    ports:
+      - 3000:80
+    networks:
+      - esnet
   server:
     build: ./server
     image: es-app-server:1.0

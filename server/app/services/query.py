@@ -13,8 +13,8 @@ class QueryBuilder:
             terms.append({'match_phrase': {'content': keyword}})
 
         return {
+            'track_total_hits': True,
             'query': {
-                'track_total_hits': True,
                 'bool': {
                     'should': terms
                 }
