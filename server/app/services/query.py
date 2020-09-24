@@ -14,8 +14,9 @@ class QueryBuilder:
 
         return {
             'query': {
+                'track_total_hits': True,
                 'bool': {
-                    'must': terms
+                    'should': terms
                 }
             }
         }
