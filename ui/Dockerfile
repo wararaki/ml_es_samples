@@ -10,7 +10,6 @@ FROM node:14.11.0
 
 WORKDIR /app
 COPY --from=build /build/package.json /app/package.json
-# COPY --from=build /build/package-lock.json /app/package-lock.json
 COPY --from=build /build/.next /app/.next
 COPY --from=build /build/public /app/public
 
