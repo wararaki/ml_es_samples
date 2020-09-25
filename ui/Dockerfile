@@ -1,13 +1,19 @@
 FROM node:14.11.0 as build
 
-WORKDIR /app
-COPY . /app
-RUN yarn install
+WORKDIR /build
+COPY . /build
+ENV NPM_CONFIG_LOGLEVEL warn
+RUN yarn install --production
 RUN yarn build
 
-FROM nginx:1.19.2
+FROM node:14.11.0
 
-COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
+WORKDIR /app
+COPY --from=build /build/package.json /app/package.json
+# COPY --from=build /build/package-lock.json /app/package-lock.json
+COPY --from=build /build/.next /app/.next
+COPY --from=build /build/public /app/public
 
-CMD [ "nginx", "-g", "daemon off;" ]
+RUN yarn install --production
+
+CMD [ "yarn", "start" ]

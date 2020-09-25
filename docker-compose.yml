@@ -4,7 +4,7 @@ services:
     build: ./ui
     image: es-app-ui:1.0
     ports:
-      - 5000:80
+      - 5000:3000
     networks:
       - esnet
   server:
