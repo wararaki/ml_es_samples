@@ -23,4 +23,4 @@ pip install -r requirements.txt
 cd ..
 ```
 
-open http://localhost:3000 on your browser.
+open http://localhost:5000 on your browser.
