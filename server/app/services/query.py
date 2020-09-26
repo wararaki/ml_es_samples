@@ -4,7 +4,7 @@ from typing import Any, Optional, Dict
 class QueryBuilder:
     @classmethod
     def build(clf, query: Optional[str]) -> Dict[str, Any]:
-        if query is None:
+        if query is None or query == '':
             return {'query': {'match_all': {}}}
         
         terms = []
