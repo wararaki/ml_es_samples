@@ -1,6 +1,6 @@
 from typing import Any, Optional, Dict
 
-
+# TODO: ファイル名とクラス名を合わせる。
 class QueryBuilder:
     @classmethod
     def build(clf, query: Optional[str]) -> Dict[str, Any]:

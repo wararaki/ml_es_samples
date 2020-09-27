@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Tuple
 
 from ..models.news import News
 
-
+# TODO: ファイル名とクラス名を合わせる。
 class ResponseFormatter:
     @classmethod
     def format(clf, response: Dict[str, Any]) -> Tuple[int, List[News]]:

@@ -6,7 +6,7 @@ from ..models.news import News
 from .query import QueryBuilder
 from .response import ResponseFormatter
 
-
+# TODO: ファイル名とクラス名を合わせる。
 class SearchService:
     @classmethod
     def search(clf, query: Optional[str], es: Elasticsearch, index: str) -> Tuple[int, List[News]]:
