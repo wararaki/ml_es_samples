@@ -1,10 +1,44 @@
 import React from 'react';
 
 
+export async function getServerSideProps({ query }) {
+  const param = query.q
+  const url = `http://localhost:8080/search?q=${param}`;
+  const result = await fetch(
+    url,
+    {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }
+  );
+  const data = await result.json();
+  
+  return {
+    props: {
+      data,
+      param
+    }
+  };
+}
+
+
 class Search extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {query: '', total: '-', news: []};
+    const { data, param } = props;
+    this.state = {
+      query: param,
+      total: data.total,
+      news: data.news.map(x =>
+        <div className="News">
+          <h3>{x.title}</h3>
+          <p>{x.datetime}</p>
+          <p>{x.content}</p>
+        </div>)
+    };
     
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
@@ -17,30 +51,9 @@ class Search extends React.Component {
   search() {
     const self = this;
     const params = new URLSearchParams({q: self.state.query});
-    const url = `http://localhost:8080/search?${params}`;
-    fetch(
-      url,
-      {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        }
-      }
-    ).then(
-      response => response.json()
-    ).then(data => {
-      self.setState({
-        total: data.total,
-        news: data.news.map(x =>
-          <div className="News">
-            <h3>{x.title}</h3>
-            <p>{x.datetime}</p>
-            <p>{x.content}</p>
-          </div>
-        )
-      })
-    });
+    const url = `http://localhost:3000/search?${params}`;
+    
+    location.href = url;
   }
 
   render() {
@@ -62,7 +75,7 @@ class Search extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

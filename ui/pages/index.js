@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Home extends React.Component {
   constructor (props) {
     super(props);
@@ -12,7 +13,7 @@ class Home extends React.Component {
   handleChange (event) {
     this.setState({query: event.target.value});
   }
-  
+
   search() {
     const self = this;
     const params = new URLSearchParams({q: self.state.query});
@@ -22,14 +23,14 @@ class Home extends React.Component {
   }
 
   render() {
-      return (
+    return (
       <div>
         <form>
           <input type="text" value={this.state.query} onChange={this.handleChange} />
         </form>
         <button onClick={this.search}>Search</button>
       </div>
-      )
+    );
   }
 }
 
