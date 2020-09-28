@@ -15,8 +15,7 @@ class Home extends React.Component {
   }
 
   search() {
-    const self = this;
-    const params = new URLSearchParams({q: self.state.query});
+    const params = new URLSearchParams({q: this.state.query});
     const url = `http://localhost:3000/search?${params}`;
     
     location.href = url;

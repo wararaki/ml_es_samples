@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SearchResult from '../components/SearchResult';
+
 
 export async function getServerSideProps({ query }) {
   const param = query.q
@@ -32,12 +34,7 @@ class Search extends React.Component {
     this.state = {
       query: param,
       total: data.total,
-      news: data.news.map(x =>
-        <div className="News">
-          <h3>{x.title}</h3>
-          <p>{x.datetime}</p>
-          <p>{x.content}</p>
-        </div>)
+      news: data.news
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -49,8 +46,7 @@ class Search extends React.Component {
   }
 
   search() {
-    const self = this;
-    const params = new URLSearchParams({q: self.state.query});
+    const params = new URLSearchParams({q: this.state.query});
     const url = `http://localhost:3000/search?${params}`;
     
     location.href = url;
@@ -66,18 +62,10 @@ class Search extends React.Component {
           <button onClick={this.search}>Search</button>
         </div>
 
-        <div>
-          <div>
-            {this.state.total} items
-          </div>
-          <div>
-            {this.state.news}
-          </div>
-        </div>
+        <SearchResult news={ this.state.news } total={ this.state.total } />
       </div>
     );
   }
 }
-
 
 export default Search;
