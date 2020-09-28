@@ -17,7 +17,7 @@ export async function getServerSideProps({ query }) {
     }
   );
   const data = await result.json();
-  
+
   return {
     props: {
       data,
@@ -28,7 +28,7 @@ export async function getServerSideProps({ query }) {
 
 
 class Search extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     const { data, param } = props;
     this.state = {
@@ -36,19 +36,19 @@ class Search extends React.Component {
       total: data.total,
       news: data.news
     };
-    
+
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
   }
 
-  handleChange (event) {
-    this.setState({query: event.target.value});
+  handleChange(event) {
+    this.setState({ query: event.target.value });
   }
 
   search() {
-    const params = new URLSearchParams({q: this.state.query});
+    const params = new URLSearchParams({ q: this.state.query });
     const url = `http://localhost:3000/search?${params}`;
-    
+
     location.href = url;
   }
 
@@ -62,7 +62,7 @@ class Search extends React.Component {
           <button onClick={this.search}>Search</button>
         </div>
 
-        <SearchResult news={ this.state.news } total={ this.state.total } />
+        <SearchResult news={this.state.news} total={this.state.total} />
       </div>
     );
   }
