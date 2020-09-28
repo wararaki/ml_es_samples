@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SearchForm from '../components/SearchForm';
 import SearchResult from '../components/SearchResult';
 
 
@@ -36,33 +37,13 @@ class Search extends React.Component {
       total: data.total,
       news: data.news
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.search = this.search.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ query: event.target.value });
-  }
-
-  search() {
-    const params = new URLSearchParams({ q: this.state.query });
-    const url = `http://localhost:3000/search?${params}`;
-
-    location.href = url;
   }
 
   render() {
     return (
       <div>
-        <div>
-          <form>
-            <input type="text" value={this.state.query} onChange={this.handleChange} />
-          </form>
-          <button onClick={this.search}>Search</button>
-        </div>
-
-        <SearchResult news={this.state.news} total={this.state.total} />
+        <SearchForm query={ this.state.query } />
+        <SearchResult news={ this.state.news } total={ this.state.total } />
       </div>
     );
   }
