@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 
 class SearchForm extends React.Component {
@@ -30,7 +31,7 @@ class SearchForm extends React.Component {
         <form>
           <input type="text" value={ this.state.query } onChange={ this.handleChange } />
         </form>
-        <button onClick={ this.search }>Search</button>
+        <Button onClick={ this.search }>Search</Button>
       </div>
     );
   }
