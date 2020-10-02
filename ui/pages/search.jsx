@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NotFoundPage from './404';
 import SearchForm from '../components/SearchForm';
 import SearchResult from '../components/SearchResult';
 
@@ -7,7 +8,7 @@ import SearchResult from '../components/SearchResult';
 export async function getServerSideProps({ query }) {
   const param = query.q
   const url = `http://localhost:8080/search?q=${param}`;
-  const result = await fetch(
+  const response = await fetch(
     url,
     {
       method: 'GET',
@@ -17,12 +18,14 @@ export async function getServerSideProps({ query }) {
       }
     }
   );
-  const data = await result.json();
+  const statusCode = response.status;
+  const data = await response.json();
 
   return {
     props: {
       data,
-      param
+      param,
+      statusCode
     }
   };
 }
@@ -31,15 +34,20 @@ export async function getServerSideProps({ query }) {
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    const { data, param } = props;
+    const { data, param, statusCode } = props;
     this.state = {
       query: param,
       total: data.total,
-      news: data.news
+      news: data.news,
+      statusCode: statusCode
     };
   }
 
   render() {
+    if (this.state.statusCode == 404) {
+      return <NotFoundPage />
+    }
+
     return (
       <div>
         <SearchForm query={ this.state.query } />

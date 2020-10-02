@@ -1,9 +1,9 @@
-from typing import Any, Optional, Dict
+from typing import Any, Dict
 
 # TODO: ファイル名とクラス名を合わせる。
 class QueryBuilder:
     @classmethod
-    def build(clf, query: Optional[str]) -> Dict[str, Any]:
+    def build(clf, query: str) -> Dict[str, Any]:
         if query is None or query == '':
             return {'query': {'match_all': {}}}
         
