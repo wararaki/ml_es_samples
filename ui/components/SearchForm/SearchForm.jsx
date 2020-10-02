@@ -24,9 +24,10 @@ class SearchForm extends React.Component {
     this.search();
   }
 
+  // TODO: domain と port を 環境変数から取るようにする。
   search() {
     const params = new URLSearchParams({ q: this.state.query });
-    const url = `http://localhost:3000/search?${params}`;
+    const url = `http://localhost:5000/search?${params}`;
 
     location.href = url;
   }

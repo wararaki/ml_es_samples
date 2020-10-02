@@ -5,19 +5,11 @@ import SearchForm from '../components/SearchForm';
 import SearchResult from '../components/SearchResult';
 
 
+// TODO: ドメイン名と port 番号を環境変数から取る。
 export async function getServerSideProps({ query }) {
   const param = query.q
-  const url = `http://localhost:8080/search?q=${param}`;
-  const response = await fetch(
-    url,
-    {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      }
-    }
-  );
+  const url = `http://server:6000/search?q=${param}`;
+  const response = await fetch(url);
   const statusCode = response.status;
   const data = await response.json();
 
