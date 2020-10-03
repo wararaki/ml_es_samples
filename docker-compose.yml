@@ -10,8 +10,8 @@ services:
   server:
     build: ./server
     image: es-app-server:1.0
-    # ports:
-    #   - 6000:6000
+    ports:
+      - 6000:6000
     networks:
       - esnet
     depends_on:
