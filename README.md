@@ -1,4 +1,4 @@
-# Sample a search engine application
+# A sample search engine application
 
 ## preparation
 
