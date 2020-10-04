@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router';
 import Button from '@material-ui/core/Button';
 
 
@@ -26,9 +27,8 @@ class SearchForm extends React.Component {
 
   search() {
     const params = new URLSearchParams({ q: this.state.query });
-    const url = `http://${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}/search?${params}`;
-
-    location.href = url;
+    const path = `/search?${params}`;
+    Router.push(path);
   }
 
   render() {

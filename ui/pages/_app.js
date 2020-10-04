@@ -1,4 +1,3 @@
-import NextApp from 'next/app';
 import React, { useEffect } from 'react';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 
