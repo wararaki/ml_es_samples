@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 
 class SearchForm extends React.Component {
@@ -35,9 +36,10 @@ class SearchForm extends React.Component {
     return (
       <div>
         <form onSubmit={ this.onFormSubmit }>
-          <input type="text" value={ this.state.query } onChange={ this.handleChange } />
+          {/* <input type="text" value={ this.state.query } onChange={ this.handleChange } /> */}
+          <TextField label="Search..." variant="outlined" value={ this.state.query } onChange={ this.handleChange } />
         </form>
-        <Button onClick={ this.search }>Search</Button>
+        <Button variant="outlined" onClick={ this.search }>Search</Button>
       </div>
     );
   }
