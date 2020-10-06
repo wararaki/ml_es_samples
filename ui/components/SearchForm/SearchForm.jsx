@@ -36,7 +36,6 @@ class SearchForm extends React.Component {
     return (
       <div>
         <form onSubmit={ this.onFormSubmit }>
-          {/* <input type="text" value={ this.state.query } onChange={ this.handleChange } /> */}
           <TextField label="Search..." variant="outlined" value={ this.state.query } onChange={ this.handleChange } />
         </form>
         <Button variant="outlined" onClick={ this.search }>Search</Button>
