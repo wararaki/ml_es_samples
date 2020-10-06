@@ -1,18 +1,4 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider as MaterialUIThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
-
-import '../styles/globals.css';
-import '../styles/App.css';
-
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#8BC34A'
-    }
-  }
-});
 
 
 function MyApp({ Component, pageProps }) {
@@ -24,11 +10,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
   
   return(
-    <MaterialUIThemeProvider theme={ theme }>
-      <StyledComponentsThemeProvider theme={ theme }>
-        <Component { ...pageProps } />
-      </StyledComponentsThemeProvider>
-    </MaterialUIThemeProvider>
+    <Component { ...pageProps } />
   );
 };
 
