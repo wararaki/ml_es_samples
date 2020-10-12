@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import NotFoundPage from './404';
 import SearchForm from '../components/SearchForm';
@@ -22,30 +22,22 @@ export async function getServerSideProps({ query }) {
 }
 
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    const { data, param, statusCode } = props;
-    this.state = {
-      query: param,
-      total: data.total,
-      news: data.news,
-      statusCode: statusCode
-    };
+const Search = (props) => {
+  const {data, param, statusCode} = props
+  const [query, setQuery] = useState(param);
+  const [total, setTotal] = useState(data.total);
+  const [news, setNews] = useState(data.news);
+
+  if (statusCode == 404) {
+    return <NotFoundPage />
   }
 
-  render() {
-    if (this.state.statusCode == 404) {
-      return <NotFoundPage />
-    }
-
-    return (
-      <div>
-        <SearchForm query={ this.state.query } />
-        <SearchResult news={ this.state.news } total={ this.state.total } />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <SearchForm query={ query } />
+      <SearchResult news={ news } total={ total } />
+    </div>
+  );
 }
 
 export default Search;
