@@ -1,47 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 
-class SearchForm extends React.Component {
-  constructor(props) {
-    super(props);
-    const { query } = props;
-    this.state = {
-        query: query
-    };
+const SearchForm = (props) => {
+  const [query, setQuery] = useState(props.query);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.search = this.search.bind(this);
-  }
-  
-  handleChange(event) {
-    this.setState({ query: event.target.value });
-  }
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
 
-  onFormSubmit(event) {
-    event.preventDefault();
-    this.search();
-  }
-
-  search() {
-    const params = new URLSearchParams({ q: this.state.query });
+  const search = () => {
+    const params = new URLSearchParams({ q: query });
     const path = `/search?${params}`;
     Router.push(path);
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={ this.onFormSubmit }>
-          <TextField label="Search..." variant="outlined" value={ this.state.query } onChange={ this.handleChange } />
-        </form>
-        <Button variant="outlined" onClick={ this.search }>Search</Button>
-      </div>
-    );
-  }
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    search();
+  };
+
+  return (
+    <div>
+      <form onSubmit={ onFormSubmit }>
+        <TextField label="Search..." variant="outlined" value={ query } onChange={ handleChange } />
+      </form>
+      <Button variant="outlined" onClick={ search }>Search</Button>
+    </div>
+  );
 }
 
 export default SearchForm;
