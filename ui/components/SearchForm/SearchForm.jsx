@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+// import Router from 'next/router';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -13,8 +13,9 @@ const SearchForm = (props) => {
 
   const search = () => {
     const params = new URLSearchParams({ q: query });
-    const path = `/search?${params}`;
-    Router.push(path);
+    const path = `./search?${params}`;
+    // Router.push(path);
+    window.location.href = path;
   };
 
   const onFormSubmit = (event) => {
