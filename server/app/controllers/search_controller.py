@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 # Dependency
-def get_es() -> Elasticsearch:
+def get_es() -> Tuple[Elasticsearch, str]:
     es, index = SessionLocal()
     try:
         yield (es, index)

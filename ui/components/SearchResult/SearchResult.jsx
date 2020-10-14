@@ -8,7 +8,7 @@ const SearchResult = (props) => {
         { props.total } items
       </div>
       <div>
-        { props.news.map(x => <News data={ x } />) }
+        { props.news.map(x => <News data={ x } key={ x.news_id } />) }
       </div>
     </div>
   );
