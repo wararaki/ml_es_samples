@@ -7,7 +7,7 @@ import SearchResult from '../components/SearchResult';
 
 export async function getServerSideProps({ query }) {
   const param = query.q;
-  const url = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/search?q=${param}`;
+  const url = encodeURI(`http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/search?q=${param}`);
   const response = await fetch(url);
   const statusCode = response.status;
   const data = await response.json();
