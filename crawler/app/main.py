@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 def es_health_check(es: Elasticsearch, index: str):
     n_retry = 0
+    wating_time = 30 # sec
     while True:
         if n_retry == 10:
             logger.error('Failed to access to the elasticsearch.')
@@ -27,14 +28,14 @@ def es_health_check(es: Elasticsearch, index: str):
             response = es.cluster.health()
         except:
             logger.warning('elasticsearch is not launched.')
-            sleep(10)
+            sleep(wating_time)
             continue
 
-        if response.get('status') == 'green':
+        if not response.get('status') == 'red':
             break
 
         logger.warning('Wating until the elasticsearch is running...')
-        sleep(10)
+        sleep(wating_time)
 
     logger.info('elasticsearch is running.')
 

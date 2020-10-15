@@ -5,6 +5,8 @@ services:
     image: es-crawler:1.0
     networks:
       - esnet
+    depends_on:
+      - es
   ui:
     build: ./ui
     image: es-app-ui:1.0

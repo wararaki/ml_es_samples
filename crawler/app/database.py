@@ -1,8 +1,10 @@
+import logging
 import os
 from typing import Tuple
 
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, logger as es_logger
 
+es_logger.setLevel(level=logging.ERROR)
 
 ES_HOST = os.getenv('ES_HOST', default='http://es:9200')
 ES_INDEX = os.getenv('ES_INDEX', default='news')
