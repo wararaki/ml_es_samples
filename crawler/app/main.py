@@ -46,6 +46,10 @@ def main():
 
     es_health_check(es, index)
 
+    if es.count(index=index).get('count') > 0:
+        logger.info('There is data in the %s index. skip data insertion.', index)
+        return
+
     try:
         Downloader.download(config.news_url, filename)
         items = map(lambda x: Parser.parse(*x), NewsLoader.load(filename))
