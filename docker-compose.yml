@@ -1,5 +1,10 @@
 version: "3.7"
 services:
+  crawler:
+    build: ./crawler
+    image: es-crawler:1.0
+    networks:
+      - esnet
   ui:
     build: ./ui
     image: es-app-ui:1.0

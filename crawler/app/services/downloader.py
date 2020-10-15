@@ -1,4 +1,5 @@
-import urllib
+from urllib.error import URLError
+import urllib.request
 
 
 class Downloader:
@@ -8,7 +9,7 @@ class Downloader:
         try:
             with urllib.request.urlopen(url) as f:
                 data = f.read()
-        except urllib.error.URLError as e:
+        except URLError as e:
             raise e
 
         try:

@@ -6,7 +6,7 @@ from typing import List, Tuple
 logger = logging.getLogger(__name__)
 
 
-class Loader:
+class NewsLoader:
     @classmethod    
     def load(clf, filename: str, skip_files: List[str]=None) -> Tuple[str, str]:
         if skip_files is None:
