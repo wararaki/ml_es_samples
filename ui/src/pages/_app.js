@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import theme from '../styles/theme';
+import theme from '../theme/theme';
 
 
 const MyApp = (props) => {
