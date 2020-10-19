@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 
-def es_health_check(es: Elasticsearch, index: str):
+def es_health_check(es: Elasticsearch):
     n_retry = 0
     wating_time = 30 # sec
     while True:
@@ -45,9 +45,9 @@ def main():
     filename = os.path.basename(urllib.parse.urlparse(config.news_url).path)
     es, index = SessionLocal()
 
-    es_health_check(es, index)
+    es_health_check(es)
 
-    if es.count(index=index).get('count') > 0:
+    if es.indices.exists(index) and es.count(index=index).get('count') > 0:
         logger.info('There is data in the %s index. skip data insertion.', index)
         return
 
@@ -56,6 +56,7 @@ def main():
         items = map(lambda x: Parser.parse(*x), NewsLoader.load(filename))
         Writer.write(es, index, config.mapping_path, items)
     except Exception as e:
+        logger.error('Data insertion error.')
         raise e
     finally:
         if os.path.exists(filename):

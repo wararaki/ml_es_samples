@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Container from '@material-ui/core/Container';
 
 import NotFoundPage from './404';
 import SearchForm from '../components/SearchForm';
@@ -33,10 +34,12 @@ const Search = (props) => {
   }
 
   return (
-    <div>
-      <SearchForm query={ query } />
-      <SearchResult news={ news } total={ total } />
-    </div>
+    <Container>
+      <div>
+        <SearchForm query={ query } />
+        <SearchResult news={ news } total={ total } />
+      </div>
+    </Container>
   );
 }
 
