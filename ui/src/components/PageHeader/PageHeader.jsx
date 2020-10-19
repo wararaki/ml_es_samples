@@ -4,8 +4,9 @@ import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1
+    root: {},
+    toolbar: {
+        height: 64
     },
     title: {
         flexGrow: 1
@@ -14,9 +15,10 @@ const useStyles = makeStyles((theme) => ({
 
 const PageHeader = () => {
     const classes = useStyles();
+
     return (
         <div className={ classes.root }>
-            <AppBar position="static" color="primary">
+            <AppBar position="static" elevation={0}>
                 <ToolBar>
                     <Typography variant="h6" className={ classes.title }>
                         News Search
@@ -25,6 +27,6 @@ const PageHeader = () => {
             </AppBar>
         </div>
     );
-}
+};
 
 export default PageHeader;

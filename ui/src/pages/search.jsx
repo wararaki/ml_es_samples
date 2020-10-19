@@ -24,17 +24,17 @@ export async function getServerSideProps({ query }) {
 
 
 const Search = (props) => {
-  const {data, param, statusCode} = props
+  const {data, param, statusCode} = props;
   const [query, setQuery] = useState(param);
   const [total, setTotal] = useState(data.total);
   const [news, setNews] = useState(data.news);
 
-  if (statusCode == 404) {
+  if (statusCode === 404) {
     return <NotFoundPage />
   }
 
   return (
-    <Container>
+    <Container maxWidth="md">
       <div>
         <SearchForm query={ query } />
         <SearchResult news={ news } total={ total } />

@@ -4,7 +4,7 @@ import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/s
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
 import PageHeader from '../components/PageHeader';
-import theme from '../theme/theme';
+import theme from '../theme';
 
 
 export default class MyDocument extends NextDocument {
