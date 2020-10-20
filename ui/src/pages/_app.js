@@ -1,13 +1,22 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import theme from '../theme/theme';
+import PageHeader from '../components/PageHeader';
+import theme from '../theme';
+
+const useStyles = makeStyles((theme) => ({
+  mainContent: {
+    marginTop: 74
+  }
+}));
 
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
+  const classes = useStyles();
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
@@ -24,7 +33,10 @@ const MyApp = (props) => {
       </Head>
       <ThemeProvider theme={ theme }>
         <CssBaseline />
-        <Component { ...pageProps } />
+        <PageHeader />
+        <div className={ classes.mainContent }>
+          <Component { ...pageProps } />
+        </div>
       </ThemeProvider>
     </React.Fragment>
   );

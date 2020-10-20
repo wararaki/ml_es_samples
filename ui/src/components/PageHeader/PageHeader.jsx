@@ -4,9 +4,11 @@ import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-    root: {},
+    root: {
+        display: "flex"
+    },
     toolbar: {
-        height: 64
+        height: 32
     },
     title: {
         flexGrow: 1
@@ -18,7 +20,7 @@ const PageHeader = () => {
 
     return (
         <div className={ classes.root }>
-            <AppBar position="static" elevation={0}>
+            <AppBar position="fixed" elevation={0}>
                 <ToolBar>
                     <Typography variant="h6" className={ classes.title }>
                         News Search

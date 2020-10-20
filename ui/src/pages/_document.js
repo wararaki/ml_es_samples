@@ -3,7 +3,6 @@ import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/styles';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
-import PageHeader from '../components/PageHeader';
 import theme from '../theme';
 
 
@@ -15,7 +14,6 @@ export default class MyDocument extends NextDocument {
           <meta name="theme-color" content={ theme.palette.primary.main } />
         </Head>
         <body>
-          <PageHeader />
           <Main />
           <NextScript />
         </body>
