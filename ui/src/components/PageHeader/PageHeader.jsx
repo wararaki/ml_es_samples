@@ -1,7 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
         height: 32
     },
     title: {
-        flexGrow: 1
+        flexGrow: 1,
+        color: '#fff'
     }
 }));
 
@@ -22,9 +25,13 @@ const PageHeader = () => {
         <div className={ classes.root }>
             <AppBar position="fixed" elevation={0}>
                 <ToolBar>
-                    <Typography variant="h6" className={ classes.title }>
-                        News Search
-                    </Typography>
+                    <Link href="/">
+                        <Button component="a">
+                            <Typography variant="h6" className={ classes.title }>
+                                News Search
+                            </Typography>
+                        </Button>
+                    </Link>
                 </ToolBar>
             </AppBar>
         </div>

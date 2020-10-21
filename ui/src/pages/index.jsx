@@ -6,7 +6,7 @@ import SearchForm from '../components/SearchForm';
 
 const Home = () => {
   return (
-    <Container>
+    <Container maxWidth="md">
       <div>
         <SearchForm query={ '' } />
       </div>
