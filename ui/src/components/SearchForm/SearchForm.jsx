@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import { useRouter } from 'next/router';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchForm = (props) => {
   const classes = useStyles();
+  const router = useRouter();
 
   const [query, setQuery] = useState(props.query);
 
@@ -33,9 +35,11 @@ const SearchForm = (props) => {
   };
 
   const search = () => {
-    const params = new URLSearchParams({ q: query });
-    const path = `./search?${params}`;
-    window.location.href = path;
+    const params = {q: query};
+    const url = {pathname: '/search?q=[query]', query: params};
+    const urlAs = {pathname: '/search', query: params};
+
+    router.push(url, urlAs);
   };
 
   const onFormSubmit = (event) => {
