@@ -1,10 +1,19 @@
 import News from './News';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  total: {
+    marginTop: 10,
+    marginLeft: 5
+  }
+}));
 
 const SearchResult = (props) => {
+  const classes = useStyles();
+
   return (
     <div>
-      <div>
+      <div className={ classes.total }>
         { props.total } items
       </div>
       <div>
