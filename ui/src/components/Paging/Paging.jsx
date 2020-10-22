@@ -22,7 +22,7 @@ const Paging = (props) => {
     const urlAs = {pathname: '/search', query: params};
 
     router.push(url, urlAs);
-  }
+  };
 
   return (
     <div className={ classes.paging }>
