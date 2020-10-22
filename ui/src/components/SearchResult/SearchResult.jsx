@@ -10,14 +10,15 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchResult = (props) => {
   const classes = useStyles();
+  const { result, page } = props;
 
   return (
     <div>
       <div className={ classes.total }>
-        { props.total } items
+        { result.total } items ({page} page)
       </div>
       <div>
-        { props.news.map(x => <News data={ x } key={ x.news_id } />) }
+        { result.news.map(x => <News data={ x } key={ x.news_id } />) }
       </div>
     </div>
   );
