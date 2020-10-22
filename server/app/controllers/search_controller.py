@@ -26,9 +26,9 @@ def ping():
     return 'ping'
 
 @router.get('/search', response_model=Result)
-def search(q: Optional[str]=None, es_info: Tuple[Elasticsearch, str] = Depends(get_es)):
+def search(q: Optional[str]=None, offset: Optional[int]=None, es_info: Tuple[Elasticsearch, str] = Depends(get_es)):
     try:
-        search_result = SearchService.search(q, es_info[0], es_info[1])
+        search_result = SearchService.search(q, offset, es_info[0], es_info[1])
     except elasticsearch.exceptions.NotFoundError as e:
         raise HTTPException(
             status_code=404,
