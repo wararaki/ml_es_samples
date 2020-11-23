@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/Toolbar';
@@ -22,7 +22,7 @@ const PageHeader = () => {
     const classes = useStyles();
 
     return (
-        <div className={ classes.root }>
+        <Box className={ classes.root }>
             <AppBar position="fixed" elevation={0}>
                 <ToolBar>
                     <Link href="/">
@@ -34,7 +34,7 @@ const PageHeader = () => {
                     </Link>
                 </ToolBar>
             </AppBar>
-        </div>
+        </Box>
     );
 };
 

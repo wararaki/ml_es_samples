@@ -5,6 +5,7 @@ import NotFoundPage from './404';
 import Paging from '../components/Paging';
 import SearchForm from '../components/SearchForm';
 import SearchResult from '../components/SearchResult';
+import { Box } from '@material-ui/core';
 
 
 export async function getServerSideProps({ query }) {
@@ -38,11 +39,11 @@ const Search = (props) => {
 
   return (
     <Container maxWidth="md">
-      <div>
+      <Box>
         <SearchForm query={ query } />
         <SearchResult result={ result } page={ page } />
         <Paging query={ query } page={ page } total={ result.total } limit={ limit } />
-      </div>
+      </Box>
     </Container>
   );
 }

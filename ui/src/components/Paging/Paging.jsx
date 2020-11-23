@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useRouter } from 'next/router';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paging: {
@@ -25,10 +26,10 @@ const Paging = (props) => {
   };
 
   return (
-    <div className={ classes.paging }>
+    <Box className={ classes.paging }>
       <Button disabled={ isPrevDisable } onClick={ () => search(iPage-1) }>Prev</Button>
       <Button disabled={ isNextDisable } onClick={ () => search(iPage+1) }>Next</Button>
-    </div>
+    </Box>
   );
 };
 

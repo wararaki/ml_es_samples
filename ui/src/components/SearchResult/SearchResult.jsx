@@ -1,5 +1,6 @@
 import News from './News';
 import { makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   total: {
@@ -13,14 +14,14 @@ const SearchResult = (props) => {
   const { result, page } = props;
 
   return (
-    <div>
-      <div className={ classes.total }>
+    <Box>
+      <Box className={ classes.total }>
         { result.total } items ({page} page)
-      </div>
-      <div>
+      </Box>
+      <Box>
         { result.news.map(x => <News data={ x } key={ x.news_id } />) }
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
