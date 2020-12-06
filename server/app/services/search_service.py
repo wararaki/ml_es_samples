@@ -27,3 +27,12 @@ class SearchService:
             raise e
 
         return ResponseFormatter.format(response)
+
+    @classmethod
+    def search_detail(clf, document_id: str, es: Elasticsearch, index: str) -> News:
+        try:
+            response = es.get(index=index, id=document_id)
+        except elasticsearch.exceptions.NotFoundError as e:
+            logger.error('Not Found Error %s', e, exc_info=True)
+            raise e
+        return News(news_id=response.get('_id'), **response.get('_source'))

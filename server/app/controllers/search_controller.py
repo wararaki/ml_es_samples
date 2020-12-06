@@ -5,7 +5,7 @@ from elasticsearch import Elasticsearch
 from fastapi import APIRouter, Depends, HTTPException
 
 from ..database import SessionLocal
-from ..models.result import Result
+from ..models.result import Result, News
 from ..services.search_service import SearchService
 
 
@@ -36,3 +36,15 @@ def search(q: Optional[str]=None, page: Optional[int]=None, limit: Optional[int]
             headers={'X-Error': 'There goes my error.'}
         )
     return search_result
+
+@router.get('/news/{document_id}', response_model=News)
+def news(document_id: str, es_info: Tuple[Elasticsearch, str] = Depends(get_es)):
+    try:
+        news_result = SearchService.search_detail(document_id, es_info[0], es_info[1])
+    except elasticsearch.exceptions.NotFoundError as e:
+        raise HTTPException(
+            status_code=404,
+            detail='Item not found',
+            headers={'X-Error': 'There goes my error.'}
+        )
+    return news_result
